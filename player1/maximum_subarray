@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int prev_best_ending_or_prevsum = 0;
+	    int current_best_ending = 0 , ans = INT_MIN;
+        if(nums.size() <= 1){
+            ans = nums[0];
+        }
+	    else{
+            for (int i = 0; i < nums.size(); ++i)
+	    {
+	    	if(prev_best_ending_or_prevsum < 0)
+	    		prev_best_ending_or_prevsum = 0;
+	    	current_best_ending = prev_best_ending_or_prevsum + nums[i];
+	    	if(current_best_ending > ans)
+	    	{
+	    		ans = current_best_ending;
+	    	}
+	    	prev_best_ending_or_prevsum = current_best_ending;
+	    }
+        }
+        return ans;
+    }
+};
